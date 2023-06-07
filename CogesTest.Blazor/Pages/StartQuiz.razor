@@ -1,0 +1,79 @@
+@attribute [Route("/")]
+@attribute [Route($"/{RouteName}")]
+@attribute [Route($"/{RouteName}/{{{nameof(CurrentUsername)}}}")]
+
+@inherits StartQuizBase
+
+<div class="container header d-flex justify-content-center align-items-end @(Loading ? "hidden" : string.Empty)">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 d-flex align-items-end justify-content-center">
+            <h1 class="text-center">
+                Coges Test<br/>
+                <em>Test your general knowledge</em>
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="container content d-flex justify-content-center @(Loading ? "hidden" : string.Empty)">
+    <div class="row align-self-center">
+        <div class="col-12 my-3">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <input tabindex="1" class="form-control text-center"
+                           @bind-value="UserName"
+                           @bind-value:event="oninput"
+                           autofocus
+                           placeholder="Enter your name"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 my-3">
+            <div class="my-0 d-flex justify-content-center">
+                <h4>Which quiz would you like to take ?</h4>
+            </div>
+        </div>
+        <div class="col-12 my-3">
+            <div class="row d-flex justify-content-center">
+                <div class="">
+                    <select tabindex="2" class="form-control"
+                            @bind="@SelectedQuizId">
+                        <option value="@Guid.Empty" disabled selected hidden>
+                            Please select a quiz
+                        </option>
+                        @foreach (var availableQuiz in AvailableQuizzes)
+                        {
+                            <option value="@availableQuiz.Id">
+                                @availableQuiz.Title ( @availableQuiz.QuestionCount questions )
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="my-0 d-flex justify-content-center">
+                @if (QuizSelected)
+                {
+                    @SelectedQuizDescription
+                }
+                else
+                {
+                    <text>Select a quiz to view its description</text>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container footer @(Loading ? "hidden" : string.Empty)">
+    <div class="row d-flex justify-content-center">
+        <div class="col-4 d-flex justify-content-center">
+            <button tabindex="3" class="btn btn-lg btn-block btn-success"
+                    @onclick="async () => await StartQuizAsync()"
+                    disabled="@(!CanStart)">
+                Start
+            </button>
+        </div>
+    </div>
+</div>

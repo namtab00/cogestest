@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CogesTest.Blazor", "CogesTest.Blazor\CogesTest.Blazor.csproj", "{BE6F74A5-6219-4DFC-A034-C14FA0C7BEA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CogesTest.Domain", "CogesTest.Domain\CogesTest.Domain.csproj", "{ED660E6D-6A19-4B81-9FF2-9B717FD285BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CogesTest.DataAccess", "CogesTest.DataAccess\CogesTest.DataAccess.csproj", "{D3F66C9B-B4D4-4858-BC7D-3A4EEB2E1630}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1179676F-9270-4606-89E9-CD3B6E601B58}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BE2E007C-9286-4061-AF85-D0E641C9AF79}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Directory.Build.props = Tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CogesTest.Domain.Tests", "Tests\CogesTest.Domain.Tests\CogesTest.Domain.Tests.csproj", "{2D7599D9-6851-4BA3-9B83-1BE219E286B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE6F74A5-6219-4DFC-A034-C14FA0C7BEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6F74A5-6219-4DFC-A034-C14FA0C7BEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6F74A5-6219-4DFC-A034-C14FA0C7BEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6F74A5-6219-4DFC-A034-C14FA0C7BEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED660E6D-6A19-4B81-9FF2-9B717FD285BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED660E6D-6A19-4B81-9FF2-9B717FD285BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED660E6D-6A19-4B81-9FF2-9B717FD285BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED660E6D-6A19-4B81-9FF2-9B717FD285BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F66C9B-B4D4-4858-BC7D-3A4EEB2E1630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F66C9B-B4D4-4858-BC7D-3A4EEB2E1630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F66C9B-B4D4-4858-BC7D-3A4EEB2E1630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F66C9B-B4D4-4858-BC7D-3A4EEB2E1630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D7599D9-6851-4BA3-9B83-1BE219E286B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D7599D9-6851-4BA3-9B83-1BE219E286B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D7599D9-6851-4BA3-9B83-1BE219E286B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D7599D9-6851-4BA3-9B83-1BE219E286B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D7599D9-6851-4BA3-9B83-1BE219E286B9} = {BE2E007C-9286-4061-AF85-D0E641C9AF79}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CC17A2F-4B06-46F9-93B9-F539E2105DBA}
+	EndGlobalSection
+EndGlobal

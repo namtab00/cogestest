@@ -1,0 +1,83 @@
+@attribute [Route($"/{RouteName}/{{{nameof(QuizRunIdParam)}}}")]
+
+@inherits QuizResultBase
+
+@if (!Loading)
+{
+    <div class="container header d-flex justify-content-center align-items-end @(Loading ? "hidden" : string.Empty)">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 d-flex align-items-end justify-content-center">
+                <h1 class="text-center">
+                    Thank you <strong>@QuizRun.Username</strong>
+                    <br>for completing<br>
+                    the <em>@QuizRun.Title</em> quiz!
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content d-flex justify-content-center @(Loading ? "hidden" : string.Empty)">
+        <div class="row align-self-center">
+            <div class="col-12 my-3">
+                <h1>You have answered correctly on @QuizRun.CorrectAnswersCount out of @QuizRun.Questions.Count questions.</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container footer @(Loading ? "hidden" : string.Empty)">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-center">
+                <button class="btn btn-lg btn-block btn-success"
+                        @onclick="StartAnother">
+                    Take another quiz
+                </button>
+            </div>
+        </div>
+        <div class="row mt-2 d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-center">
+                <div style="height: 200px;">
+                    <div class="h-100 d-inline-block">
+                        <img src="@GetResultImageSrc(200)" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    private string GetResultImageSrc(int heightPx)
+    {
+        string tag;
+        string says;
+
+        if (QuizRun.AllQuestionsAnsweredCorrectly)
+        {
+            tag = "grumpy";
+            says = "bravo!";
+        }
+        else
+        {
+            switch (QuizRun.CorrectAnswersCount)
+            {
+                case 0:
+                {
+                    tag = "angry";
+                    says = "disappoint!";
+                    break;
+                }
+                default:
+                {
+                    tag = "funny";
+                    says = "try again!";
+                    break;
+                }
+            }
+        }
+
+        return $"https://cataas.com/cat/{tag}/says/{WebUtility.UrlEncode(says)}?height={heightPx}";
+    }
+
+}

@@ -1,0 +1,64 @@
+@attribute [Route($"/{RouteName}/{{{nameof(QuizRunIdParam)}}}")]
+
+@inherits TakeQuizBase
+
+
+@if (!Loading)
+{
+    <div class="container header d-flex justify-content-center align-items-end @(Loading ? "hidden" : string.Empty)">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 d-flex align-items-end justify-content-center">
+                <h1 class="text-center">@CurrentQuestion.Content</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content d-flex justify-content-center @(Loading ? "hidden" : string.Empty)">
+        <div class="row align-self-center">
+            <div class="col-12 my-3">
+                <div class="row justify-content-center">
+                    @foreach (var option in CurrentQuestion.Options.OrderBy(o => o.DisplayOrder))
+                    {
+                        <div class="card d-flex text-center option clickable p-2 col-4 mx-2 my-2 @(CurrentQuestion.OptionCount > 5 ? "1" : "2")  @(SelectedOptionId == option.Id ? "bg-info" : string.Empty)"
+                             @onclick="() => ToggleSelection(option.Id)">
+                            @option.Content
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container footer @(Loading ? "hidden" : string.Empty)">
+        <div class="row d-flex justify-content-center">
+            <div class="col-6 d-flex justify-content-center">
+                <button class="btn btn-lg btn-block btn-success"
+                        @onclick="async () => await AnswerAndProceedAsync()"
+                        disabled="@(!CanProceed)">
+                    <i class="oi oi-@(IsLastQuestion ? "flag" : "chevron-right")"></i> @(IsLastQuestion ? "Conclude quiz" : "Next Question")
+                </button>
+            </div>
+        </div>
+        <div class="row mt-5 justify-content-center">
+            <div class="col-10">
+                <div class="progress position-relative" style="height: 20px;">
+                    <div class="progress-bar bg-info"
+                         style="width: @QuizRun.ProgressPercent%"
+                         role="progressbar"
+                         aria-valuenow="@QuizRun.ProgressPercent"
+                         aria-valuemin="1"
+                         aria-valuemax="100">
+                        @(CurrentQuestionIndex + 1) / @QuizRun.QuestionCount
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1 justify-content-center">
+            <div class="col-10 d-flex justify-content-center">
+                <h5 class="text-center">
+                    @QuizRun.Username you are @QuizRun.ProgressPercent% into the <strong>@QuizRun.Title</strong> quiz
+                </h5>
+            </div>
+        </div>
+    </div>
+}
